@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+               http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="a1" class="Address">
+		<constructor-arg value="ghaziabad"></constructor-arg>
+		<constructor-arg value="UP"></constructor-arg>
+		<constructor-arg value="India"></constructor-arg>
+	</bean>
+	<bean id="answer1" class="Answer">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="java is platform independent "></constructor-arg>
+		<constructor-arg value="12/04/1994"></constructor-arg>
+	</bean>
+	<bean id="answer2" class="Answer">
+		<constructor-arg value="2"></constructor-arg>
+		<constructor-arg value="java is robust in nature"></constructor-arg>
+		<constructor-arg value="19/04/2018"></constructor-arg>
+	</bean>
+	<bean id="user1" class="User">
+		<constructor-arg value="123"></constructor-arg>
+		<constructor-arg value="Manish "></constructor-arg>
+		<constructor-arg value="srk@gmail.com"></constructor-arg>
+	</bean>
+	<bean id="user2" class="User">
+		<constructor-arg value="124"></constructor-arg>
+		<constructor-arg value="Dinesh "></constructor-arg>
+		<constructor-arg value="KKr@gmail.com"></constructor-arg>
+	</bean>
+	<bean id="studentbean" class="Student">
+		<!-- <property name="name" value="MANISH"></property> -->
+		<constructor-arg value="Manish"></constructor-arg>
+		<constructor-arg value="10" type="int"></constructor-arg>
+		<constructor-arg ref="a1">
+			<!-- <ref bean="a1" /> -->
+		</constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Java is a programming language</value>
+				<value>Java is a Platform</value>
+				<value>Java is an Island of Indonasia</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key="1" value="Topper"></entry>
+				<entry key="2" value="Runner Up 2nd"></entry>
+				<entry key="3" value="Runner Up 3rd"></entry>
+			</map>
+		</constructor-arg>
+		<constructor-arg>
+			<map>
+				<entry key-ref="answer1" value-ref="user1"></entry>
+				<entry key-ref="answer2" value-ref="user2"></entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+
+	<!-- DI by using setter method , alternative t constructor injection -->
+	
+	
+	
+	<!-- <bean id="obj" class="com.javatpoint.Employee"> <property name="id"> 
+		<value>20</value> </property> <property name="name"> <value>Arun</value> 
+		</property> <property name="city"> <value>ghaziabad</value> </property> </bean> -->
+		
+		
+		
+</beans>  
