@@ -46,7 +46,7 @@ public class _257_BinaryTreePaths {
 
 			list.remove(list.size() - 1); // before we return, backtrack for last added element
 
-			return
+			return;
 		}
 
 		list.add(String.valueOf(root.val));
