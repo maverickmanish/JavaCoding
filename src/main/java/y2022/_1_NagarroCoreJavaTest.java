@@ -40,11 +40,13 @@ public class _1_NagarroCoreJavaTest {
 
 		/* 4. str.endsWith("") */
 		stringComparisonWithObject();
+		
+		
 		/*
-		 * 5. overloaded methods when passing null for only Object works but other case
-		 * doesn't work
-		 * 
-		 * new _1_NagarroCoreJavaTest().display(null);
+		 * 5. overloaded methods when passing null for only Object 
+		 * works but other case
+		 * doesn't work as there's no hierarchical relation
+		 * display(null);
 		 */
 	}
 
