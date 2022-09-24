@@ -1,8 +1,9 @@
 package leetcode;
 
  
-
-
+/*https://leetcode.com/problems/add-two-numbers/
+	TC : O(max(m,n)) as it'll iterate till the longest list.
+	SC : O(max(m,n)+1)*/
 public class _2_AddTwoNumbers {
 
 	public static void main(String[] args) {
@@ -35,6 +36,7 @@ public class _2_AddTwoNumbers {
 				  p.next=new ListNode(1);
 				  return head.next;
 	    }
+	  
 }
 
 

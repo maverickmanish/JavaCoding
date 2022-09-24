@@ -7,7 +7,8 @@ public class _190_ReverseBits {
 	}
 
 	/*
-	 * Approach 2 1. get the last bit from n by bitwise-AND with 1
+	 * Approach 2 
+	 * 1. get the last bit from n by bitwise-AND with 1
 	 * 2. shift LSB of result towards left by bitwise-Leftshift <<
 	 * 3. Append the last bit from step 1 to result by bitwise-OR
 	 * 4. delete the last bit of n by shifting LSB towards

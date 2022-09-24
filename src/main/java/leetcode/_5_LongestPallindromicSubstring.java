@@ -4,9 +4,13 @@ public class _5_LongestPallindromicSubstring {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		System.out.println(longestPallindromicSubstring("baab"));
 	}
 
+	/*
+	 * https://leetcode.com/problems/longest-palindromic-substring/submissions/ TC :
+	 * O(n*n)
+	 */
 	public static String longestPallindromicSubstring(String s) {
 		int start = 0, end = 0;
 		for (int i = 0; i < s.length(); i++) {
@@ -25,7 +29,7 @@ public class _5_LongestPallindromicSubstring {
 	}
 
 	private static int expandFromCenter(String s, int i, int j) {
-		while (s.charAt(i) == s.charAt(j) && i >= 0 && j < s.length()) {
+		while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j) ) {
 			i--;
 			j++;
 		}
