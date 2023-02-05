@@ -41,7 +41,7 @@ public class Streams {
 		 */
 		System.out.println("Reduce functionality : ");
 		List<Integer> list2 = Arrays.asList(1, 2, 3, 4);
-		int res = list2.parallelStream().reduce(1, (s1, s2) -> s1 * s2, (p, q) -> p * q);
+		int res = list2.parallelStream().reduce(1, (s1, s2) -> s1 * s2);
 		System.out.println(res);
 
 	}

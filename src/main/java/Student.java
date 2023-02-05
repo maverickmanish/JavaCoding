@@ -35,7 +35,6 @@ public class Student {
 	public void display() {
 		Iterator<String> itr = subjects.iterator();
 		while (itr.hasNext()) {
-
 			System.out.println(itr.next());
 		}
 

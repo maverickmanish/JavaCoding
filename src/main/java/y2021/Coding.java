@@ -35,7 +35,7 @@ public class Coding {
 					}
 
 				}
-				System.out.println("value is : " + counter);
+				System.out.println("Odd value is : " + counter);
 				counter++;
 				notify();
 			}
@@ -55,7 +55,7 @@ public class Coding {
 					}
 
 				}
-				System.out.println("value is : " + counter);
+				System.out.println("Even value is : " + counter);
 				counter++;
 				notify();
 			}
@@ -183,6 +183,7 @@ public class Coding {
 		String strOrig="Deepak Patel";
 		
 		/* Vowels removing from a string */
+		
 		System.out.println(strOrig.replaceAll("[aeiouAEIOU]", ""));
 
 		String s="Deepak Patel";
@@ -190,7 +191,7 @@ public class Coding {
 		String[] array= s.split("[aeiou]");
 		System.out.println(String.join("",array));
 	
-		System.out.println(" Exception in Add "+ add(4,5));
+		System.out.println(" Exception in Add "+ add(4,0));
 	}
 	
 
@@ -245,6 +246,7 @@ public class Coding {
 			return -1;
 	}
 
+	/* all letters of alphabets */
 	public static Boolean isPanagram(String s) {
 		Boolean[] allLetters = new Boolean[26];
 		Arrays.fill(allLetters, false);
@@ -260,6 +262,7 @@ public class Coding {
 		return true;
 	}
 
+	/* both string contains same letters */
 	public static Boolean isAnagram(String s1, String s2) {
 		char[] a = s1.toCharArray();
 		char[] b = s2.toCharArray();
@@ -272,7 +275,7 @@ public class Coding {
 		int smallest = arr[0], smallest2 = arr[1];
 		Set<Integer> set = new TreeSet<>();
 
-		for (Integer integer : arr) {
+		for (int integer : arr) {
 			set.add(integer);
 		}
 		Iterator<Integer> iterator = set.iterator();
@@ -466,6 +469,7 @@ public class Coding {
 		try {
 			return a+b;
 		} catch (Exception e) {
+			System.out.println("ex");
 			return 3;
 		}
 		finally {

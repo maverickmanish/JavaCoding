@@ -24,7 +24,9 @@ public class Java8Mkyong {
 		 * isStringNumberOrAlphabetsOnly(); stringPatternMatcherNumberOrAlphabets();
 		 * stringJoining(); convertMapToList();
 		 */
-
+		primeNumberStreamr();
+		isStringNumberOrAlphabetsOnly();
+		stringJoining();
 		arrayJoiner();
 		NumberUtils.isDigits("dkd");
 	}
@@ -102,6 +104,16 @@ public class Java8Mkyong {
 		collect.forEach(System.out::println);
 		System.out.println(collect.get(0));
 	}
+	
+	private static void primeNumberStreamr()
+	{
+		IntStream.iterate(2, n->n+1).limit(100).filter(
+				x-> {
+					return !IntStream.rangeClosed(2, x/2).anyMatch(i-> x%i==0);
+				}
+				)
+		.boxed().collect(Collectors.toList()).forEach(System.out::print);
+	}
 
 	private static void primeNumberStream() {
 		List<Integer> collect = IntStream.iterate(0, n -> n + 1).limit(100).filter(Java8Mkyong::isPrime).boxed()
@@ -110,6 +122,8 @@ public class Java8Mkyong {
 		System.out.println(collect.get(0));
 	}
 
+	
+	
 	private static Boolean isPrime(int x) {
 		if (x <= 1)
 			return false;

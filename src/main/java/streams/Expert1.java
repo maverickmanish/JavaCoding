@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -20,6 +21,8 @@ public class Expert1 {
 		String[] myArray = new String[] { "bob", "alice", "paul", "ellie" };
 		Stream<String> myStream = Arrays.stream(myArray);
 
+ List<String> collect = myStream.filter(s -> s.length() > 4).map(String::toUpperCase).collect(Collectors.toList());
+		
 		Stream<String> myStream3 = myStream.filter(s -> s.length() > 4).map(String::toUpperCase);
 
 		String[] myArray2 = myStream3.toArray(String[]::new);

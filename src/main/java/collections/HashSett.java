@@ -12,8 +12,8 @@ public class HashSett {
 	      //Adding duplicate elements
 	      set.add("java");
 	      set.add("c++");
-	      set.add(null);
-	      System.out.println(set.add(null));
+
+	      System.out.println(set.add("c++"));
 	      
 	      System.out.println(set);
 	      System.out.println(set.toString());

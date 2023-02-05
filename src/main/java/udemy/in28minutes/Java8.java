@@ -95,11 +95,19 @@ public class Java8 {
 		 * List.of(1,2,3,4,5);
 		 */
 		
+		List<List<Integer>> marksByStudents = List.of (
+				  List.of (60, 70, 80),
+				  List.of(50, 70, 85),
+				  List.of(65, 70, 75)
+				); 
+		
+		
+		Double collect = marksByStudents.stream().flatMap(List::stream).collect(Collectors.averagingInt(x-> x));
+		System.out.println(collect);
 		numbers.stream().filter(x -> x % 2 == 0).forEach(System.out::println);
 
 		List<String> courses = Arrays.asList(
 				new String[] { "Spring", "Spring Boot Advanced", "API", "Microservices", "Kubernates and Docker" });
-		
 		
 		
 		filterStringContent(courses, System.out::println);
@@ -175,12 +183,13 @@ public class Java8 {
 
 		System.out.println("this is "
 				+ coursesList.stream().collect(Collectors.groupingBy(Course::getCategory, Collectors.counting())));
-		System.out.println("this too " + coursesList.stream().collect(Collectors.groupingBy(Course::getCategory,
+		System.out.println("Requirement " + coursesList.stream().collect(Collectors.groupingBy(Course::getCategory,
 				Collectors.mapping(Course::getNoOfStudents, Collectors.toList()))));
 
 		
 		System.out.println(coursesList.stream().collect(Collectors.groupingBy(Course::getCategory,
-				Collectors.maxBy(Comparator.comparing(Course::getReviewScore)))));
+				Collectors.maxBy(Comparator.comparing(Course::getReviewScore))
+				)));
 
 		List<String> g = Arrays.asList("geeks", "for", "geeks");
 
@@ -191,7 +200,7 @@ public class Java8 {
 		Map<String, Long> result2 = g.stream().collect(Collectors.groupingBy(i -> i, Collectors.counting()));
 
 		// Print the result
-		System.out.println(result);
+		System.out.println("result :"+result);
 
 		Map<String, Double> productPrice = new HashMap<>();
 		Map<String, Double> sortedProductPrice = new LinkedHashMap<>();

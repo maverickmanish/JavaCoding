@@ -13,13 +13,12 @@ import org.springframework.util.CollectionUtils;
 public class Java11 {
 
 	public static void main(String[] args) throws IOException {
-
 		/*
 		 * kdfjkjdf
 		 * 
 		 */	
 		System.out.println("  ".isBlank());
-		System.out.println("  ".isEmpty());
+		System.out.println(" ".isEmpty());
 //		repeat , strip , leading and trailing and lines  , Optional.isEmpty() c
 		System.out.println(StringUtils.isNotEmpty(null));
 		Collection collection = null;

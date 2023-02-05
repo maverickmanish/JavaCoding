@@ -43,7 +43,8 @@ public class ArrayListt {
 		System.out.println(" Now, remove show ");
 		
 		ArrayList<String> list1 = new ArrayList<String>();
-	    list1.add("java");
+	    
+		list1.add("java");
 	list1.add("c++");
 	list1.add("python");
 	list1.add("c");

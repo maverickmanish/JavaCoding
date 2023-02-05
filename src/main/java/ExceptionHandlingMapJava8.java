@@ -408,7 +408,7 @@ public class ExceptionHandlingMapJava8 {
 		obj.p();
 		List<String> alphabets = Arrays.asList(new String[] { "a", "b", "b", "d" });
 
-		alphabets.forEach(l -> l.toUpperCase());
+		alphabets.forEach(l -> System.out.println(l.toUpperCase()));
 		alphabets.forEach(System.out::println);
 		System.out.println("normal flow...");
 
@@ -433,8 +433,10 @@ public class ExceptionHandlingMapJava8 {
 		System.out.println("This is going to the best !!! ");
 		random.ints(5).sorted().forEach(System.out::println);
 
-		// Five random doubles between 0 (inclusive) and 0.5 (exclusive)
-
+		
+        random.longs().limit(4).forEach(System.out::println);
+		
+     // Five random doubles between 0 (inclusive) and 0.5 (exclusive)
 		System.out.println("Five random doubles between 0 (inclusive) and 0.5 (exclusive)");
 		random.doubles(5, 0, 0.5).sorted().forEach(System.out::println);
 
@@ -456,7 +458,7 @@ public class ExceptionHandlingMapJava8 {
 		List<String> emails = Arrays.asList("alex@example.com", "bob@yahoo.com", "cat@google.com", "david@example.com");
 
 		// Apply predicate filter
-		List<String> desiredEmails = emails.stream().filter(emailFilter).collect(Collectors.<String>toList());
+		List<String> desiredEmails = emails.stream().filter(emailFilter).collect(Collectors.toList());
 
 		// Now perform desired operation
 		desiredEmails.forEach(System.out::println);

@@ -15,6 +15,7 @@ public class StringListFiltering {
 		List<String> bannedList = Arrays.asList(banned);
 		List<String> list = Arrays.asList(paragraph.split(" "));
 
+		
 		String s = list.stream().filter(e -> !bannedList.contains(e)).collect(Collectors.joining(" "));
 
 		// @formatter:on

@@ -1,10 +1,18 @@
 public class SIB1 {
    
+	{
+		System.out.println("IIB");
+	}
     static {
         System.out.println("SIB");
     }
     public SIB1() {
         System.out.println("Constructor");
+    }
+    
+    public SIB1(int a)
+    {
+    	System.out.println("Constructir : value of a "+ a);
     }
    
     public static void main(String[] args) {
@@ -15,7 +23,8 @@ public class SIB1 {
     		 e.printStackTrace();
 			System.out.println("sdfsfd");
 		}
-    	 SIB1 s= new SIB1();
+    	 new SIB1();
+    	 new SIB1(7);
 	      System.out.println("rest of the code...");  
     	System.out.println("It's SIb");
     }

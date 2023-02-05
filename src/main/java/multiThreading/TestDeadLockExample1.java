@@ -8,36 +8,33 @@ class Customer {
 		if (this.amount < amount) {
 			System.out.println("Less Balance; Waiting For Deposit...");
 			try {
-				wait();
+				Thread.sleep(3000);
+				System.out.println("Going To Withdraw amount : "+amount+ " from existing balance : "+this.amount);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 			}
 		}
+		
 		this.amount -= amount;
+		System.out.println("withdrawn amount : "+amount+ " leaving balance : "+this.amount);
 		System.out.println("Yeah! Withdraw Completed...");
 
 	}
 
 	synchronized void deposit(int amount) {
-		System.out.println("Going To Deposit...");
+		System.out.println("Going To Deposit amount : "+amount+ " to existing balance : "+this.amount);
 		this.amount += amount;
+		System.out.println("deposited amount : "+amount+ " & new balance : "+this.amount);
 		System.out.println("Deposit Completed... ");
-		notify();
+		
 	}
 }
 
 public class TestDeadLockExample1 {
 	public static void main(String args[]) {
 		final Customer c = new Customer();
-		Thread th = new Thread() {
-			public void run() {
-				c.withdraw(15000);
-			}
-		};
-		Thread th2 = new Thread() {
-			public void run() {
-				c.deposit(10000);
-			}
-		};
+		Thread th = new Thread(() -> c.withdraw(15000));
+		Thread th2 = new Thread(() -> c.deposit(15000));
 		th.start();
 		th2.start();
 	}

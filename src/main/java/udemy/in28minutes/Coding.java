@@ -1,5 +1,6 @@
 package udemy.in28minutes;
 
+import java.awt.SecondaryLoop;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +13,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author mabhardwaj
@@ -167,18 +169,28 @@ public class Coding {
 		 * 
 		 * System.out.println(longestSubstring("ABDEFGABEF".toLowerCase()));
 		 */
-		N = 10;
-		Coding cd = new Coding();
-		Thread t = new Thread(() -> {
-			cd.printOdd();
-		});
-		Thread t2 = new Thread(() -> {
-			cd.printEven();
-		});
+		/*
+		 * System.out.println(stringDuplicateRemove("manishkumarbhardwaj"));
+		 * System.out.println(removeDuplicateCharacter("manishkumarbhardwaj"));
+		 */
+		/*
+		 * N = 10; Coding cd = new Coding(); Thread t = new Thread(() -> {
+		 * cd.printOdd(); }); Thread t2 = new Thread(() -> { cd.printEven(); });
+		 * 
+		 * t.start(); t2.start();
+		 */
 
-		t.start();
-		t2.start();
+		System.out.println(reverseStringWordwise("java is super popular "));
+		
+		System.out.println(camelToSnakeCase("manishBhardwajKumarSharma"));
 
+	}
+
+	public static String removeDuplicateCharacter(String s) {
+		IntStream chars = s.chars();
+		StringBuilder ss = new StringBuilder();
+		s.chars().mapToObj(c -> (char) c).collect(Collectors.toCollection(LinkedHashSet::new)).forEach(ss::append);
+		return ss.toString();
 	}
 
 	public static String stringDuplicateRemove(String s) {
@@ -217,10 +229,23 @@ public class Coding {
 		return res;
 	}
 
+	public static int firstRepeatingElementArray(int[] arr) {
+		Set<Integer> set = new HashSet<>();
+		int min_index=-1;
+		for(int j=arr.length-1;j>=0;j--)
+		{
+			if(set.contains(arr[j]))
+				min_index=j;
+			else
+				set.add(arr[j]);
+		}
+		return min_index==-1?min_index : arr[min_index];
+	}
+
 	public static int firstRepeatElementArray(int[] arr) {
 		Set<Integer> set = new HashSet<>();
 		int min_index = -1;
-		for (int i = arr.length - 1; i >= 0; i++) {
+		for (int i = arr.length - 1; i >= 0; i--) {
 			if (set.contains(arr[i]))
 				min_index = i;
 			else
@@ -232,6 +257,20 @@ public class Coding {
 			return -1;
 	}
 
+	public static boolean isPanagramString(String s)
+	{
+		
+		Boolean[] letters=new Boolean[26];
+		Arrays.fill(letters, false);
+		s.chars().mapToObj(c->(char)c).map(Character::toUpperCase).forEach(c->
+		{ 
+			if(c>='A' && c<='Z')
+				letters[c-'A']=true;
+		}
+		);
+		return Arrays.stream(letters).allMatch(b-> b==true);
+	}
+	
 	public static Boolean isPanagram(String s) {
 		Boolean[] allLetters = new Boolean[26];
 		Arrays.fill(allLetters, false);
@@ -255,11 +294,25 @@ public class Coding {
 		return Arrays.equals(a, b);
 
 	}
+	
+	public static Integer get2ndSmallestNum(int[] arr)
+	{
+		int smallest=arr[0], secondSmallest = Integer.MAX_VALUE;
+		for(int i=1;i<arr.length;i++)
+		{
+			if(arr[i]<smallest)
+			{
+				secondSmallest=smallest;
+				smallest=arr[i];
+			}
+			else if(arr[i]<secondSmallest)
+			 secondSmallest =arr[i];
+		}
+		return secondSmallest;
+	}
 
 	public static Integer get2ndSmallestNumber(int[] arr) {
-		int smallest = arr[0], smallest2 = arr[1];
 		Set<Integer> set = new TreeSet<>();
-
 		for (Integer integer : arr) {
 			set.add(integer);
 		}
@@ -268,6 +321,13 @@ public class Coding {
 
 		return iterator.next();
 
+	}
+	public static Boolean pallindromeX(String s)
+	{
+		for(int i=0,j=s.length()-1;i<j;i++,j--)
+			if(s.charAt(i)!=s.charAt(j))
+				return false;
+		return true;
 	}
 
 	public static Boolean pallindrome(String s) {
@@ -334,6 +394,24 @@ public class Coding {
 			if (isPrime[i])
 				list.add(i);
 	}
+	
+	public static void generatePrimesX(int N)
+	{
+		for(int i=2;i<N;i++)
+		{
+			boolean flag=true;
+			for(int j=2;j<=i/2;j++)
+			{
+				if(i%j==2)
+				{
+					flag=true;
+					break;
+				}
+			}
+			System.out.print(flag?" "+i :"");
+		}
+
+	}
 
 	public static void generatePrimes(int N) {
 		for (int i = 2; i < N; i++) {
@@ -360,14 +438,17 @@ public class Coding {
 	}
 
 	private static String reverseStringWordwise(String string) {
-		String[] array = string.split(" ");
-		String result = "";
-		for (int i = array.length - 1; i >= 0; i--) {
-			result += array[i] + " ";
+		String[] split = string.split(" ");
+		int length = split.length;
+		StringBuilder s = new StringBuilder(split[length-1]);
+		for(int j=length-2;j>=0;j--)
+		{
+			s.append(" "+split[j]);
 		}
-		return result.substring(0, result.length() - 1);
+			return s.toString();
 	}
 
+	
 	private static String breakString(String s, Character c) {
 		String[] array = s.split(c.toString());
 		return String.join("", array);
@@ -472,11 +553,16 @@ public class Coding {
 
 	public static String snakeToCamel(String string) {
 		String[] array = string.split("_");
-		String camel = array[0];
+		StringBuilder camel = new StringBuilder(array[0]) ;
 		for (int i = 1; i < array.length; i++) {
-			camel += Character.toUpperCase(array[i].charAt(0)) + array[i].substring(1);
+			camel.append(Character.toUpperCase(array[i].charAt(0))+ array[i].substring(1))  ;
 		}
-		return camel;
+		return camel.toString();
+	}
+	public static String camelToSnakeCase(String string)
+	{
+		String[] split = string.split("(?=[A-Z])");
+		return String.join("_", split).toLowerCase();
 	}
 
 	public static String camelCaseToSnake(String string) {
@@ -493,6 +579,7 @@ public class Coding {
 
 		return String.join("_", array).toLowerCase();
 	}
+	
 
 	public static boolean isRotation(Integer[] a, Integer[] array2) {
 		if (a.length != array2.length)

@@ -20,7 +20,8 @@ public class Test2 {
         while (iterator.hasNext())
         {
         	System.out.println("no error but when we pull out the next item, gives error");
-            System.out.println(premiumPhone.get(iterator.next()));
+          //  System.out.println(premiumPhone.get(iterator.next()));
+        	System.out.println(iterator.next());
             
         }
 

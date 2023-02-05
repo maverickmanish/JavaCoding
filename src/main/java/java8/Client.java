@@ -29,7 +29,7 @@ public class Client {
 		System.out.println("people before sorting");
 		System.out.println(people);
 		// Collections.sort(people,new PersonComparator());
-		Collections.sort(people, (Person a, Person b) -> {
+		Collections.sort(people, (a,  b) -> {
 			return a.getName().compareTo(b.getName());
 		});
 		System.out.println("people after sorting");
@@ -51,7 +51,7 @@ public class Client {
 
 		List<String> sorted = strings.stream().sorted((s1, s2) -> s1.compareTo(s2)).collect(Collectors.toList());
 
-		System.out.println(sorted);
+		System.out.println("sorted one now"+sorted);
 
 		List<String> sortedAlt = strings.stream().sorted(String::compareTo).collect(Collectors.toList());
 

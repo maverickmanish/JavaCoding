@@ -91,7 +91,7 @@ public class Check {
 		map.put(3, 'c');
 		map.put(4, 'a');
 		System.out.println(map);
-		map=map.entrySet().stream().filter(e -> e.getValue().equals('a')).collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
+		map=map.entrySet().stream().filter(e -> e.getValue().equals('a')).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 		System.out.println(map);
 		
 		

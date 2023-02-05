@@ -55,7 +55,7 @@ public class Arrayss {
 		for (Integer integer : list) {
 			System.out.println(integer);
 		}
-		primes = (Integer[]) list.toArray();
+		primes =  list.toArray(new Integer[list.size()]);
 		System.out.println("array after sorting in reverse order  : " + ArrayUtils.toString(primes));
 
 		String[] fruits = { "apple", "banana", "orange", "grapes" };
