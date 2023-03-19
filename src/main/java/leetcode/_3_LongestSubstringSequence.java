@@ -7,7 +7,7 @@ public class _3_LongestSubstringSequence {
 	public static void main(String[] args) {
 
 		System.out.println(lengthOfLIS(new int[] { 1, 3, 4, 6, 2, 7, 5, 3, 2 }));
-
+		System.out.println(lengthOfLongestSubstringBest("abbcdeaf"));
 	}
 
 	/*
@@ -33,8 +33,8 @@ public class _3_LongestSubstringSequence {
 		 return res;
 	 }
 
-		/* the last index for occuring character */
-	 public int lengthOfLongestSubstringBest(String s) {
+		/* the last index for re-ccuring character */
+	 public static int lengthOfLongestSubstringBest(String s) {
 	      if(s.isEmpty())
 	    		return 0;
 	      if(s.isBlank() || s.length()==1)
