@@ -50,7 +50,7 @@ public class Arrayss {
 		ArrayUtils.reverse(primes);
 
 		System.out.println("Antother way to reverse the elements of array using collections ");
-		List<Integer> list = (List<Integer>) Arrays.asList(primes);
+		List<Integer> list = Arrays.asList(primes);
 		Collections.reverse(list);
 		for (Integer integer : list) {
 			System.out.println(integer);
@@ -80,9 +80,9 @@ public class Arrayss {
 
 		System.out.println(" \n\n\nArray  to string ");
 		String delimiter = "_";
-		String arrayToStringg = arrayToStringFormat(fruits, delimiter);
+		String arrayToString = arrayToStringFormat(fruits, delimiter);
 
-		System.out.println("Array to string with delimited : " + arrayToStringg);
+		System.out.println("Array to string with delimited : " + arrayToString);
 	}
 
 	
