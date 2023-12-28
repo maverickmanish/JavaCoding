@@ -1,49 +1,36 @@
 package java8;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Streams {
 
-	public static void main(String[] args) {
-		/*
-		 * @SuppressWarnings("resource") Scanner scanner = new Scanner(System.in);
-		 * List<String> items = new ArrayList<String>(); for (int i = 0; i < 2; i++) {
-		 * items.add(scanner.next()); } System.out.println("Unfiltered List :- " +
-		 * items); String prefix = "JD";
-		 * 
-		 * List<String> filteredList = items.stream().filter(e ->
-		 * (!e.startsWith(prefix))).collect(Collectors.toList());
-		 * System.out.println("Unfiltered List :- " + filteredList);
-		 * System.out.println("Unfiltered List :- " + items);
-		 * 
-		 * Stream<Integer> stream1 = Stream.of(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9
-		 * }); stream1.forEach(p -> System.out.println(p));
-		 */
+    public static void main(String[] args) {
 
-		Random random = new Random();
+        Integer[] data = new Integer[]{1, 2, 3, 4, 4};
+        Stream<Integer> stream = Stream.of(data);
+        stream.forEach(System.out::println);
+        Stream<Integer> stream2 = Arrays.stream(data);
 
-		// Five random integers
+        String[] myArray = new String[]{"bob", "alice", "paul", "ellie"};
+        Stream<String> myStream = Arrays.stream(myArray);
 
-		random.ints(5, 34, 67).boxed().sorted().collect(Collectors.toList()).forEach(System.out::println);
+        List<String> collect = myStream.filter(s -> s.length() > 4).map(String::toUpperCase).collect(Collectors.toList());
+        Stream<String> myStream3 = myStream.filter(s -> s.length() > 4).map(String::toUpperCase);
+        String[] myArray2 = myStream3.toArray(String[]::new);
 
-		/*
-		 * //Five random doubles between 0 (inclusive) and 0.5 (exclusive)
-		 * 
-		 * random.doubles( 5, 0, 0.5 ).sorted().forEach( System.out::println );
-		 * 
-		 * //Boxing long to Long so they can be collected
-		 * 
-		 * List<Long> longs = random.longs( 5 ).boxed().collect( Collectors.toList() );
-		 * System.out.println(longs);
-		 */
-		System.out.println("Reduce functionality : ");
-		List<Integer> list2 = Arrays.asList(1, 2, 3, 4);
-		int res = list2.parallelStream().reduce(1, (s1, s2) -> s1 * s2);
-		System.out.println(res);
+        for (String string : myArray2) {
+            System.out.println(string);
+        }
 
-	}
-
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < 23; i++) {
+            list.add(i);
+        }
+        Integer reduced = list.stream().reduce(0, (a, b) -> a + b);
+        System.out.println(reduced);
+    }
 }
