@@ -23,7 +23,7 @@ public class DateTimeJava8 {
 
         System.out.println("\n\t\t");
 
-        LocalDate previousday = LocalDate.now();
+        LocalDate previousDay = LocalDate.now();
         int year = today.getYear();
         int month = today.getMonthValue();
         int day = today.getDayOfMonth();
