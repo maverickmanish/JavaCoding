@@ -102,12 +102,12 @@ public class Java8 {
 				); 
 		
 		
-		Double collect = marksByStudents.stream().flatMap(List::stream).collect(Collectors.averagingInt(x-> x));
+		Double collect = marksByStudents.stream().flatMap(List::stream).collect(Collectors.averagingInt(Integer::intValue));
 		System.out.println(collect);
 		numbers.stream().filter(x -> x % 2 == 0).forEach(System.out::println);
 
 		List<String> courses = Arrays.asList(
-				new String[] { "Spring", "Spring Boot Advanced", "API", "Microservices", "Kubernates and Docker" });
+				"Spring", "Spring Boot Advanced", "API", "Microservices", "Kubernates and Docker");
 		
 		
 		filterStringContent(courses, System.out::println);
@@ -191,6 +191,17 @@ public class Java8 {
 				Collectors.maxBy(Comparator.comparing(Course::getReviewScore))
 				)));
 
+		Map<String, List<Course>> resultCourses = coursesList.stream()
+				.collect(Collectors.groupingBy(
+						Course::getCategory,
+						Collectors.collectingAndThen(
+								Collectors.toList(),
+								cs -> cs.stream()
+										.sorted(Comparator.comparing(Course::getReviewScore).reversed())
+										.collect(Collectors.toList())
+						)
+				));
+
 		List<String> g = Arrays.asList("geeks", "for", "geeks");
 
 		// Collect the list as map
@@ -256,7 +267,7 @@ public class Java8 {
 		map.put("C", 12);
 		map.put("D", 15);
 		map.put("E", 67);
-		
+
 		for (Map.Entry<String, Integer> entry :map.entrySet()) {
 			System.out.println(entry.getKey()+" "+entry.getValue()+" "+entry.toString());
 		}

@@ -1,5 +1,7 @@
 package udemy.in28minutes;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.awt.SecondaryLoop;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,24 +24,17 @@ import java.util.stream.IntStream;
 public class Coding {
 	private String name = "TATA";
 	private Integer counter = 1;
-	static Integer N;
+
+	public Coding(Integer n) {
+		N = n;
+	}
+
+	private Integer N;
 
 	public void printOdd() {
 		synchronized (this) {
 			while (counter <= N) {
-				if (counter % 2 == 0) {
-
-					try {
-						wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-				System.out.println("value is : " + counter);
-				counter++;
-				notify();
+				print(counter % 2 != 0);
 			}
 		}
 	}
@@ -47,20 +42,31 @@ public class Coding {
 	public void printEven() {
 		synchronized (this) {
 			while (counter <= N) {
-				if (counter % 2 != 0) {
-
-					try {
-						wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-				System.out.println("value is : " + counter);
-				counter++;
-				notify();
+				print(counter % 2 == 0);
 			}
+		}
+	}
+
+	private void print(boolean condition) {
+		if (condition) {
+			printNumberAndNotify();
+		} else {
+			waitThread();
+		}
+	}
+
+	private void printNumberAndNotify() {
+		System.out.println(Thread.currentThread().getName() + ": value is : " + counter);
+		counter++;
+		notify();
+	}
+
+	private void waitThread() {
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -171,36 +177,41 @@ public class Coding {
 		 */
 		/*
 		 * System.out.println(stringDuplicateRemove("manishkumarbhardwaj"));
-		 * System.out.println(removeDuplicateCharacter("manishkumarbhardwaj"));
-		 */
-		/*
-		 * N = 10; Coding cd = new Coding(); Thread t = new Thread(() -> {
-		 * cd.printOdd(); }); Thread t2 = new Thread(() -> { cd.printEven(); });
-		 * 
-		 * t.start(); t2.start();
 		 */
 
+//		ThreadEvenOdd();
+//		System.out.println(removeDuplicateCharacter("manishkumarbhardwaj"));
 		System.out.println(reverseStringWordwise("java is super popular "));
 		
 		System.out.println(camelToSnakeCase("manishBhardwajKumarSharma"));
 
 	}
 
+	private static void ThreadEvenOdd() {
+		Coding cd = new Coding(4);
+		Thread t = new Thread(cd::printOdd, "oddThread");
+		Thread t2 = new Thread(cd::printEven, "evenThread");
+		t.start();
+		t2.start();
+	}
+
 	public static String removeDuplicateCharacter(String s) {
 		IntStream chars = s.chars();
+		StringBuilder collect = s.chars().distinct()
+				.collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append);
 		StringBuilder ss = new StringBuilder();
-		s.chars().mapToObj(c -> (char) c).collect(Collectors.toCollection(LinkedHashSet::new)).forEach(ss::append);
+		s.chars().mapToObj(c -> (char) c).distinct().forEach(ss::append);
 		return ss.toString();
 	}
 
 	public static String stringDuplicateRemove(String s) {
-		String ss = "";
+		StringBuilder ss = new StringBuilder();
 		Set<Character> set = new LinkedHashSet<>();
 		for (int i = 0; i < s.length(); i++)
 			set.add(s.charAt(i));
 		for (Character character : set)
-			ss += character;
-		return ss;
+			ss.append(character);
+		return ss.toString();
 	}
 
 	public static List<Integer> gradingStudents(List<Integer> grades) {
@@ -229,46 +240,32 @@ public class Coding {
 		return res;
 	}
 
-	public static int firstRepeatingElementArray(int[] arr) {
-		Set<Integer> set = new HashSet<>();
-		int min_index=-1;
-		for(int j=arr.length-1;j>=0;j--)
-		{
-			if(set.contains(arr[j]))
-				min_index=j;
-			else
-				set.add(arr[j]);
-		}
-		return min_index==-1?min_index : arr[min_index];
-	}
-
 	public static int firstRepeatElementArray(int[] arr) {
 		Set<Integer> set = new HashSet<>();
 		int min_index = -1;
-		for (int i = arr.length - 1; i >= 0; i--) {
-			if (set.contains(arr[i]))
-				min_index = i;
+		for (int j = arr.length - 1; j >= 0; j--) {
+			if (!set.add(arr[j])) {
+				min_index = j;
+			}
+/*
+			if (set.contains(arr[j]))
+				min_index = j;
 			else
-				set.add(arr[i]);
+				set.add(arr[j]);
+*/
 		}
-		if (min_index != -1)
-			return arr[min_index];
-		else
-			return -1;
+		return min_index == -1 ? min_index : arr[min_index];
 	}
 
 	public static boolean isPanagramString(String s)
 	{
-		
-		Boolean[] letters=new Boolean[26];
+		Boolean[] letters = new Boolean[26];
 		Arrays.fill(letters, false);
-		s.chars().mapToObj(c->(char)c).map(Character::toUpperCase).forEach(c->
-		{ 
-			if(c>='A' && c<='Z')
-				letters[c-'A']=true;
-		}
-		);
-		return Arrays.stream(letters).allMatch(b-> b==true);
+		s.chars()
+				.map(Character::toUpperCase)
+				.filter(c -> c >= 'A' && c <= 'Z')
+				.forEach(c -> letters[c - 'A'] = true);
+		return Arrays.stream(letters).allMatch(Boolean::booleanValue);
 	}
 	
 	public static Boolean isPanagram(String s) {
@@ -379,6 +376,8 @@ public class Coding {
 	static List<Integer> list = new ArrayList<>();
 
 	public static void SOE() {
+
+
 		list.clear();
 		Boolean[] isPrime = new Boolean[Max_size];
 		Arrays.fill(isPrime, true);
@@ -438,14 +437,27 @@ public class Coding {
 	}
 
 	private static String reverseStringWordwise(String string) {
+		String reversedString = Arrays.stream(string.split(" "))
+				.sorted((a, b) -> -1) // Reverse the order of elements
+				.collect(Collectors.joining(" "));
+
+		String reversedString2 = Arrays.stream(string.split(" "))
+				.reduce((acc, word) -> word + " " + acc)
+				.orElse("");
+
+		System.out.println(reversedString);
+
 		String[] split = string.split(" ");
 		int length = split.length;
 		StringBuilder s = new StringBuilder(split[length-1]);
 		for(int j=length-2;j>=0;j--)
 		{
-			s.append(" "+split[j]);
+			s.append(" ").append(split[j]);
 		}
 			return s.toString();
+
+
+
 	}
 
 	
@@ -555,7 +567,8 @@ public class Coding {
 		String[] array = string.split("_");
 		StringBuilder camel = new StringBuilder(array[0]) ;
 		for (int i = 1; i < array.length; i++) {
-			camel.append(Character.toUpperCase(array[i].charAt(0))+ array[i].substring(1))  ;
+//			camel.append(StringUtils.capitalize(array[i]));
+			camel.append(Character.toUpperCase(array[i].charAt(0))).append(array[i].substring(1));
 		}
 		return camel.toString();
 	}
@@ -576,7 +589,6 @@ public class Coding {
 
 	public static String camelCaseToSnake2(String string) {
 		String[] array = string.split("(?=[A-Z])");
-
 		return String.join("_", array).toLowerCase();
 	}
 	
