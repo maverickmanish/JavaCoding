@@ -5,6 +5,7 @@ import java.util.TreeSet;
 public class MiddleDigitSorting {
 
     public static int middle(int n) {
+
         int digits = (int) Math.log10(n) + 1;
         return (int) (n / Math.pow(10, digits / 2)) % 10;
     }

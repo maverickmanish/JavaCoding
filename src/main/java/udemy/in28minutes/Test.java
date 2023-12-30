@@ -31,7 +31,8 @@ JPA Exception :
 
 public class Test {
 
-	public static boolean isPrime(int n)
+	public static boolean
+	isPrime(int n)
 	{
 		if(n<2)
 			return false;
@@ -66,10 +67,9 @@ public class Test {
 		Map<Integer, Long> collect = list.stream().collect(Collectors.groupingBy(e->e,Collectors.counting()));
 		collect.entrySet().stream().filter(e-> e.getValue()>1).map(Map.Entry::getKey).collect(Collectors.toList()).
 		forEach(System.out::println);
-		
-		
+
 		System.out.println(list.stream().filter(e->e%2==0).reduce(Integer::sum).get());
-	//	System.out.println(indexOfMostRepeatedChar(name.toLowerCase()));
+	System.out.println(indexOfMostRepeatedChar(name.toLowerCase()));
 
 		 Map<String, String> hashMap = new HashMap<>();
 		 
@@ -109,10 +109,9 @@ public class Test {
 	         
 	         
 	         List<String> collect4 = Optional.ofNullable(adminUserRole).orElseGet(List::of).stream()
-	                 .map(privilege -> privilege.toString()).collect(Collectors.toList());
+	                 .map(String::toString).collect(Collectors.toList());
 	         
-			List<String> collect2 = Optional.ofNullable(adminUserRole).orElseGet(Collections::emptyList).stream()
-             .map(privilege -> privilege.toString()).collect(Collectors.toList());
+			List<String> collect2 = new ArrayList<>(Optional.ofNullable(adminUserRole).orElseGet(Collections::emptyList));
 	         
 			System.out.println("list is "+collect2);
 	         hashMapNullable = Optional.ofNullable(hashMapNullable)
@@ -131,16 +130,26 @@ public class Test {
 		
 	}
 
-	public static int indexOfMostRepeatedChar(String s) {
+	public static int
+
+	indexOfMostRepeatedChar(String s) {
 		int count = -1;
 		int index = -1;
 		Map<Character, Integer> map = new HashMap<>();
 		for (int i = s.length() - 1; i >= 0; i--) {
 			char c = s.charAt(i);
-			if (map.containsKey(c))
-				map.put(c, map.get(c) + 1);
-			else
-				map.put(c, 1);
+
+//			map.compute(c, (key, value) -> Objects.isNull(value) ? 1 : value + 1);
+//
+//			map.computeIfPresent(c, (key, value) -> value + 1);
+//			map.computeIfAbsent(c, key -> 1);
+
+			map.merge(c, 1, Integer::sum);
+
+//			if (map.containsKey(c))
+//				map.put(c, map.get(c) + 1);
+//			else
+//				map.put(c, 1);
 			int valueCount = map.get(c);
 			if (valueCount > count) {
 				count = valueCount;

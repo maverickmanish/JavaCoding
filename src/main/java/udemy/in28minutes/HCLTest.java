@@ -2,7 +2,9 @@ package udemy.in28minutes;
 
 import java.util.Arrays;
 
-public class HCLTest {
+public class
+
+HCLTest {
 
 	public static void main(String[] args) {
 
@@ -52,19 +54,20 @@ public class HCLTest {
 	}
 
 	public static int[] sortArray(int[] array) {
-		int temp = -1;
 		for (int i = 0; i < array.length - 1; i++) {
-			for (int j = 0; j < array.length - i-1; j++) {
-
+			for (int j = 0; j < array.length - i - 1; j++) {
 				if (array[j] > array[j + 1]) {
-					temp = array[j];
-					array[j] = array[j + 1];
-					array[j + 1] = temp;
+					swapElements(array, j);
 				}
-
 			}
 		}
 		return array;
+	}
+
+	private static void swapElements(int[] array, int j) {
+		int temp = array[j];
+		array[j] = array[j + 1];
+		array[j + 1] = temp;
 	}
 
 }
