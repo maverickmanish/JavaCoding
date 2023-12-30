@@ -53,7 +53,7 @@ public class _4_Median2SortedArrays {
             }
         }
 
-        //Only we we can come here is if input arrays were not sorted. Throw in that scenario.
+        //Only we can come here is if input arrays were not sorted. Throw in that scenario.
         throw new IllegalArgumentException();
 	}
 }

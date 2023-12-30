@@ -13,7 +13,7 @@ public class _3_LongestSubstringSequence {
 	/*
 	 * https://leetcode.com/problems/longest-substring-without-repeating-characters/
 	 * TC : O (2*n) SC : O(m) where m is the size of charset Optimization : storing
-	 * the last index for occuring character
+	 * the last index for occurring character
 	 */
 	 public int lengthOfLongestSubstringSlidingWindow(String s) {
 		 int chars[]=new int[128], left=0,right=0,res=0;
@@ -33,24 +33,24 @@ public class _3_LongestSubstringSequence {
 		 return res;
 	 }
 
-		/* the last index for re-ccuring character */
+		/* the last index for re-curing character */
 	 public static int lengthOfLongestSubstringBest(String s) {
 	      if(s.isEmpty())
 	    		return 0;
 	      if(s.isBlank() || s.length()==1)
 	    		return 1;
-	      Integer characterArray[]=new Integer[128];
-	      int maxLength = 0, startIndex = 0,i = 0;
-			for (; i < s.length();) {
-				char charAt = s.charAt(i);
-				Integer charIndex = characterArray[charAt];
-				if ( charIndex!=null && charIndex>=startIndex && charIndex<=i) 
-					startIndex=charIndex+1;
-					maxLength=Math.max(maxLength, i-startIndex+1);
-					characterArray[charAt] = i++;
-			}
-			
-			return maxLength; 
+	      Integer[] characterArray =new Integer[128];
+	      int res = 0, left = 0,right = 0;
+		 while (right < s.length()) {
+			 char charAt = s.charAt(right);
+			 Integer charIndex = characterArray[charAt];
+			 if (charIndex != null && charIndex >= left && charIndex <= right) {
+				 left = charIndex + 1;
+			 }
+				 res=Math.max(res, right-left+1);
+				 characterArray[charAt] = right++;
+		 }
+		 return res;
 	    }
 	
 	static int[][] dp;
