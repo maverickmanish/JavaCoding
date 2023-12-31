@@ -16,10 +16,7 @@ public class _9_Palindrome {
 	        {
 	        	i++;
 	        }
-	        if(i==s.length()/2)
-	        	return true;
-	        else 
-	        	return false;
+		   return i == s.length() / 2;
 	        
 	    }
 	   

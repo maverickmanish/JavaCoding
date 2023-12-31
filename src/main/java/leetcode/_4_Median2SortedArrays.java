@@ -23,7 +23,7 @@ public class _4_Median2SortedArrays {
         int x = input1.length;
         int y = input2.length;
 
-        int low = 0;
+        int low = 0; // here it refers to number of elements in partition possible ranging from 0 till it's length
         int high = x;
         while (low <= high) {
             int partitionX = (low + high)/2;

@@ -20,7 +20,7 @@ public class _5_LongestPallindromicSubstring {
 			int len = Math.max(len1, len2);
 
 			if (len > end - start + 1) {
-				start = i - (len - 1) / 2;
+				start = i - (len - 1) / 2; // len - 1 to compensate for both odd and even length palindromic subString
 				end = i + len / 2;
 			}
 
