@@ -1,5 +1,7 @@
 package leetcode;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class _14_LongestCommonPrefix {
 
 	public static void main(String[] args) {
@@ -13,10 +15,8 @@ public class _14_LongestCommonPrefix {
         for (int i=1,j,k;i<strs.length;i++) {
 			j=k=0;
 			String st = strs[i];
-        	while(j<sub.length() && k< st.length() && sub.charAt(j++)==st.charAt(k))
-        	{k++;}
+        	while(j<sub.length() && k< st.length() && sub.charAt(j++)==st.charAt(k)) {k++;}
         	sub=st.substring(0,k);
-        		
 		}
         return sub;
     }

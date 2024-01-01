@@ -13,16 +13,18 @@ public class _11_ContainMostWater {
 		 {
 			 int minHeight = Math.min(height[i], height[j]);
 			int k = minHeight  * (j-i);
-			if(max< k) max=k;
+			if(max< k) {
+				max = k;
+			}
 			
-			if(height[i]< height[j])
+			if(height[i]< height[j]) {
 				i++;
-			else
+			}
+			else {
 				j--;
-			
+			}
 		 }
 		 return max;
-	        
 	    }
 
 }

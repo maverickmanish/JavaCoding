@@ -17,7 +17,6 @@ public class _9_Palindrome {
 	        	i++;
 	        }
 		   return i == s.length() / 2;
-	        
 	    }
 	   
 	   public boolean isPalindromeInt(int x) {

@@ -17,7 +17,7 @@ public class _15_ThreeSum {
 		int length = nums.length;
 		if (length < 3)
 			return result;
-		Arrays.sort(nums); // O (nlog n)
+		Arrays.sort(nums); // O (nlog(n))
 
 		for (int i = 0; i < length - 2; i++) {  // O(n)
 			if (i == 0 || nums[i] > nums[i - 1]) {

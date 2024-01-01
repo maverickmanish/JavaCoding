@@ -17,10 +17,6 @@ public class _2_AddTwoNumbers {
 		ListNode head = new ListNode();
 		ListNode p = head;
 		int carry = 0;
-
-
-
-
 		while (Objects.nonNull(l1) || Objects.nonNull(l2)) {
 			if(l1 !=null) {
 				carry += l1.val;

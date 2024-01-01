@@ -4,15 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class _13_RomanToInteger {
-	 @SuppressWarnings("serial")
-	Map<Character, Integer> map = 
+	 Map<Character, Integer> map =
 			 new HashMap<Character, Integer>() {{
 			 put('I', 1); put('V', 5); put('X', 10);
 			 put('L', 50); put('C', 100); put('D', 500);
 			 put('M', 1000);
 			 }};
 	public static void main(String[] args) {
-		
 
 	}
 			public int romanToInt(String s) {
@@ -25,7 +23,6 @@ public class _13_RomanToInteger {
 			 return total;
 			}
 
-	
 	 public static int romanToInt2(String s) {
 	        int num=0;
 	      int length = s.length();
