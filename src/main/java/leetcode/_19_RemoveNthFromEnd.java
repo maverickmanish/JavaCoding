@@ -26,15 +26,9 @@ public class _19_RemoveNthFromEnd {
 	}
 
 	public ListNode removeNthFromEnd2(ListNode head, int n) {
-        if (n <= 0) {
-            return head;
-        }
-        
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        
         ListNode preDelete = dummy;
-        
         for (int i = 0; i < n; i++) {
             if (head == null) {
                 return null;
@@ -46,9 +40,7 @@ public class _19_RemoveNthFromEnd {
             preDelete = preDelete.next;
             head = head.next;
         }
-        
         preDelete.next = preDelete.next.next;
-        
         return dummy.next;
     }
 	

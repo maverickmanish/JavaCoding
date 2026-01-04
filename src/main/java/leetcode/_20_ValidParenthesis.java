@@ -19,9 +19,9 @@ public class _20_ValidParenthesis {
 		map.put('{', '}');
 		Stack<Character> stack = new Stack<Character>();
 		for (Character c : charArray) {
-		if (map.keySet().contains(c)) {
+		if (map.containsKey(c)) {
 		stack.push(c);
-		} else if (map.values().contains(c)) {
+		} else if (map.containsValue(c)) {
 		if (!stack.isEmpty() && map.get(stack.peek()) == c) {
 		stack.pop();
 		} else {

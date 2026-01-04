@@ -12,10 +12,10 @@ public class _16_ThreeSumClosest {
 
 	public int threeSumClosest(int[] nums, int target) {
 		int length = nums.length;
-		int closesetSum = nums[0] + nums[1] + nums[length - 1];
-		if(length==3)
-			return closesetSum;
 		 Arrays.sort(nums); // O(nlogn)
+		int closesetSum = nums[0] + nums[1] + nums[length - 1];
+		if(length==3 || closesetSum == target)
+			return closesetSum;
 		    for (int i = 0; i < length - 2; i++) {
 		      int start = i + 1;
 		      int end = length - 1;
