@@ -1,11 +1,11 @@
 public class SIB1 {
 
     {
-        System.out.println("#2: IIB");
+        System.out.println("#2: IIB: Before every every constructor");
     }
 
     static {
-        System.out.println("#1: SIB");
+        System.out.println("#1: SIB: Once During class Loading");
     }
 
     public SIB1() {
@@ -27,7 +27,7 @@ public class SIB1 {
         new SIB1();
         new SIB1(7);
         System.out.println("rest of the code...");
-        System.out.println("It's SIB");
+        System.out.println("It's SIB concept explained");
     }
 
 }
