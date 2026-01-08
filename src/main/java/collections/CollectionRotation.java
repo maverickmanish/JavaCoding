@@ -19,6 +19,8 @@ public class CollectionRotation {
 		}
 		
 		Integer[] array1= new Integer[] {1,2,3,4,5};
+		Integer[] array23= {1,2,3,4,5};
+		System.out.println(array23);
 		Integer[] array2 =new Integer[] {4,5,1,2,3};
 		
 		System.out.println(isRotation(array2,array1)); 
